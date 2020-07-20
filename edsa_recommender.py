@@ -31,6 +31,7 @@ import streamlit as st
 # Data handling dependencies
 import pandas as pd
 import numpy as np
+from pathlib import Path
 
 # Custom Libraries
 from utils.data_loader import load_movie_titles
@@ -43,7 +44,7 @@ title_list = load_movie_titles('resources/data/movies.csv')
 def read_markdown_file(markdown_file):
     return Path(markdown_file).read_text()
 
-team = read_markdown_file("profile_card2.html") 
+team = read_markdown_file("meet_the_team.html") 
 slides = read_markdown_file("slides.html")   
 
 def local_css(file_name):
@@ -55,7 +56,7 @@ def main():
 
     # DO NOT REMOVE the 'Recommender System' option below, however,
     # you are welcome to add more options to enrich your app.
-    page_options = ["Recommender System","Solution Overview", "Data analysis and plots"
+    page_options = ["Recommender System","Solution Overview", "Data analysis and plots",
                     "Meet the team", "Pitch"]
 
     # -------------------------------------------------------------------

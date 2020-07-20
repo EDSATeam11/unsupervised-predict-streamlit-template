@@ -40,6 +40,16 @@ from recommenders.content_based import content_model
 # Data Loading
 title_list = load_movie_titles('resources/data/movies.csv')
 
+def read_markdown_file(markdown_file):
+    return Path(markdown_file).read_text()
+
+team = read_markdown_file("profile_card2.html") 
+slides = read_markdown_file("slides.html")   
+
+def local_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
 # App declaration
 def main():
 
@@ -108,9 +118,27 @@ def main():
     if page_selection == "Data analysis and plots":
         st.title("Data analysis") 
         st.write("A look at the data analysis")
+        if st.checkbox("Distribution of ratings"):
+            st.write("These plots give insights about the ratings given for the movies")
+            st.image("resources/imgs/plots/number_of_ratings.png", width=500)
+            st.write("These are the highest rated movies. We have selected the top 20")
+            st.image("resources/imgs/plots/highest_rated_movies.png", width=500)
+        if st.checkbox("Distrubtion of movies"):
+            st.write("Drama, comedy, action and thriller were the genres with the highest number of movies")
+            st.image("resources/imgs/plots/number_of_movies_by_genre2.png", width=500)
+            st.write("A large number of movies were released in the 1900s compared to the 1800s and 2000s")
+            st.image("resources/imgs/plots/movies_per_era.png", width=500)
+            st.write("These are the most popular themes")
+            st.image("resources/imgs/plots/wordcloud.png", width=500)
+
+    if page_selection == "Pitch":
+        st.title("Pitch slide deck")
+        st.markdown(slides, unsafe_allow_html=True)
 
     if page_selection == "Meet the team":
         st.title("Meet the team")
+        st.markdown(team, unsafe_allow_html=True)
+        local_css('html_style.css')
 
     # You may want to add more sections here for aspects such as an EDA,
     # or to provide your business pitch.

@@ -124,7 +124,7 @@ def main():
             st.image("resources/imgs/plots/number_of_ratings.png", width=500)
             st.write("These are the highest rated movies. We have selected the top 20")
             st.image("resources/imgs/plots/highest_rated_movies.png", width=500)
-        if st.checkbox("Distrubtion of movies"):
+        if st.checkbox("Distribution of movies"):
             st.write("Drama, comedy, action and thriller were the genres with the highest number of movies")
             st.image("resources/imgs/plots/number_of_movies_by_genre2.png", width=500)
             st.write("A large number of movies were released in the 1900s compared to the 1800s and 2000s")

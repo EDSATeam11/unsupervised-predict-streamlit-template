@@ -34,7 +34,7 @@ movies_df = pd.read_csv('resources/data/movies.csv',sep = ',',delimiter=',')
 ratings_df = pd.read_csv('resources/data/ratings.csv')
 ratings_df.drop(['timestamp'], axis=1,inplace=True)
 # Building the Model
-model=pickle.load(open('resources/models/SVD100000.pkl', 'rb'))
+model=pickle.load(open('resources/models/SVD100k.pkl', 'rb'))
 
 def prediction_item(item_id):
     """Short summary.

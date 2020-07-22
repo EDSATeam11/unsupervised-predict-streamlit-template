@@ -42,16 +42,10 @@ from recommenders.content_based import content_model
 # Data Loading
 title_list = load_movie_titles('resources/data/movies.csv')
 
-#def read_markdown_file(markdown_file):
-    #return Path(markdown_file).read_text()
-
-team = read_markdown_file("meet_the_team.html") 
-slides = read_markdown_file("slides.html") 
-solution = read_markdown_file("solution_overview.html")  
-
-def local_css(file_name):
-    with open(file_name) as f:
-        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+# Load pages
+team = read_markdown_file("resources/pages/meet_the_team.html") 
+slides = read_markdown_file("resources/pages/slides.html") 
+solution = read_markdown_file("resources/pages/solution_overview.html")  
 
 # App declaration
 def main():
@@ -153,12 +147,10 @@ def main():
     if page_selection == "Meet the team":
         st.title("Meet the team")
         st.markdown(team, unsafe_allow_html=True)
-        local_css('html_style.css')
+        local_css('resources/pages/html_style.css')
 
     # You may want to add more sections here for aspects such as an EDA,
     # or to provide your business pitch.
-
-
 
 if __name__ == '__main__':
     main()

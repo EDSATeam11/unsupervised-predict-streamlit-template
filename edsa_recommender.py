@@ -34,6 +34,7 @@ import numpy as np
 from pathlib import Path
 
 # Custom Libraries
+from app_functions import *
 from utils.data_loader import load_movie_titles
 from recommenders.collaborative_based import collab_model
 from recommenders.content_based import content_model
@@ -41,8 +42,8 @@ from recommenders.content_based import content_model
 # Data Loading
 title_list = load_movie_titles('resources/data/movies.csv')
 
-def read_markdown_file(markdown_file):
-    return Path(markdown_file).read_text()
+#def read_markdown_file(markdown_file):
+    #return Path(markdown_file).read_text()
 
 team = read_markdown_file("meet_the_team.html") 
 slides = read_markdown_file("slides.html") 
@@ -76,12 +77,12 @@ def main():
 
         # User-based preferences
         st.write('### Enter Your Three Favorite Movies')
-        movie_1 = st.selectbox('Fisrt Option',title_list[1493:1520])
-        movie_2 = st.selectbox('Second Option',title_list[2110:2120])
-        movie_3 = st.selectbox('Third Option',title_list[2110:2120])
-        #movie_1 = st.selectbox('Fisrt Option',title_list[14930:15200])
-        #movie_2 = st.selectbox('Second Option',title_list[25055:25255])
-        #movie_3 = st.selectbox('Third Option',title_list[21100:21200])
+        #movie_1 = st.selectbox('Fisrt Option',title_list[1493:1520])
+        #movie_2 = st.selectbox('Second Option',title_list[2110:2120])
+        #movie_3 = st.selectbox('Third Option',title_list[2110:2120])
+        movie_1 = st.selectbox('Fisrt Option',title_list[14930:15200])
+        movie_2 = st.selectbox('Second Option',title_list[25055:25255])
+        movie_3 = st.selectbox('Third Option',title_list[21100:21200])
         fav_movies = [movie_1,movie_2,movie_3]
 
         # Perform top-10 movie recommendation generation

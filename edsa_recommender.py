@@ -45,7 +45,8 @@ def read_markdown_file(markdown_file):
     return Path(markdown_file).read_text()
 
 team = read_markdown_file("meet_the_team.html") 
-slides = read_markdown_file("slides.html")   
+slides = read_markdown_file("slides.html") 
+solution = read_markdown_file("solution_overview.html")  
 
 def local_css(file_name):
     with open(file_name) as f:
@@ -75,9 +76,12 @@ def main():
 
         # User-based preferences
         st.write('### Enter Your Three Favorite Movies')
-        movie_1 = st.selectbox('Fisrt Option',title_list[14930:15200])
-        movie_2 = st.selectbox('Second Option',title_list[25055:25255])
-        movie_3 = st.selectbox('Third Option',title_list[21100:21200])
+        movie_1 = st.selectbox('Fisrt Option',title_list[1493:1520])
+        movie_2 = st.selectbox('Second Option',title_list[2110:2120])
+        movie_3 = st.selectbox('Third Option',title_list[2110:2120])
+        #movie_1 = st.selectbox('Fisrt Option',title_list[14930:15200])
+        #movie_2 = st.selectbox('Second Option',title_list[25055:25255])
+        #movie_3 = st.selectbox('Third Option',title_list[21100:21200])
         fav_movies = [movie_1,movie_2,movie_3]
 
         # Perform top-10 movie recommendation generation
@@ -114,23 +118,32 @@ def main():
     # ------------- SAFE FOR ALTERING/EXTENSION -------------------
     if page_selection == "Solution Overview":
         st.title("Solution Overview")
-        st.write("This is an overview of the models used to recommend movies")
+        st.markdown(solution, unsafe_allow_html=True)
 
     if page_selection == "Data analysis and plots":
         st.title("Data analysis") 
-        st.write("A look at the data analysis")
-        if st.checkbox("Distribution of ratings"):
-            st.write("These plots give insights about the ratings given for the movies")
+        if st.checkbox("Ratings insights"):
+            st.subheader("These plots give insights about the ratings given for the movies")
+            st.write("The most common rating is 4 with over 2.5 million ratings")
             st.image("resources/imgs/plots/number_of_ratings.png", width=500)
+            st.image("resources/imgs/plots/ratings_distribution.png", width=500)
             st.write("These are the highest rated movies. We have selected the top 20")
             st.image("resources/imgs/plots/highest_rated_movies.png", width=500)
-        if st.checkbox("Distribution of movies"):
-            st.write("Drama, comedy, action and thriller were the genres with the highest number of movies")
+        if st.checkbox("Movie insights"):
+            st.subheader("A number of factors influence movie choices and below we take a look at \
+                        some of those factors such as popular themes, actors, directors and era")
+            st.write("The longest movie is 246 minutes long")
+            st.image("resources/imgs/plots/movie_runtime.png", width=500)
+            st.write("Genres with the highest number of movies were drama, comedy, action and thriller")
             st.image("resources/imgs/plots/number_of_movies_by_genre2.png", width=500)
-            st.write("A large number of movies were released in the 1900s compared to the 1800s and 2000s")
+            st.write("The majority of movies in our database were released in the 1900s")
             st.image("resources/imgs/plots/movies_per_era.png", width=500)
-            st.write("These are the most popular themes")
-            st.image("resources/imgs/plots/wordcloud.png", width=500)
+            st.write("These are the most popular themes.")
+            st.image("resources/imgs/plots/wordcloud2.png", width=500)
+            st.image("resources/imgs/plots/top_20_directors.png", width=500)
+            #st.image("resources/imgs/plots/director_movies.png", width=500)
+            st.image("resources/imgs/plots/frequent_actors.png", width=500)
+
 
     if page_selection == "Pitch":
         st.title("Pitch slide deck")

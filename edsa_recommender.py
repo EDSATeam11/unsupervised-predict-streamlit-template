@@ -119,25 +119,35 @@ def main():
         st.title("Data analysis") 
         if st.checkbox("Ratings insights"):
             st.subheader("These plots give insights about the ratings given for the movies")
-            st.write("The most common rating is 4 with over 2.5 million ratings")
-            st.image("resources/imgs/plots/number_of_ratings.png", width=500)
-            st.image("resources/imgs/plots/ratings_distribution.png", width=500)
-            st.write("These are the highest rated movies. We have selected the top 20")
-            st.image("resources/imgs/plots/highest_rated_movies.png", width=500)
+            st.write("This is a count of how many movies have been given a certain rating with 5 being \
+                    the highest rating that a movie can get. Most of the movies have been given a \
+                    rating of 4 which means that the majority of people enjoy most of the movies in the database")
+            #st.image("resources/imgs/plots/number_of_ratings.png", width=650)
+            st.image("resources/imgs/plots/ratings_distribution.png", width=650)
+            st.write("These are the 20 most rated movies. In the top 10 we only have movies from \
+                    the 90s, with 1994 taking the top 3 spots.")
+            st.image("resources/imgs/plots/highest_rated_movies.png", width=650)
         if st.checkbox("Movie insights"):
             st.subheader("A number of factors influence movie choices and below we take a look at \
                         some of those factors such as popular themes, actors, directors and era")
-            st.write("The longest movie is 246 minutes long")
-            st.image("resources/imgs/plots/movie_runtime.png", width=500)
-            st.write("Genres with the highest number of movies were drama, comedy, action and thriller")
-            st.image("resources/imgs/plots/number_of_movies_by_genre2.png", width=500)
-            st.write("The majority of movies in our database were released in the 1900s")
-            st.image("resources/imgs/plots/movies_per_era.png", width=500)
-            st.write("These are the most popular themes.")
-            st.image("resources/imgs/plots/wordcloud2.png", width=500)
-            st.image("resources/imgs/plots/top_20_directors.png", width=500)
-            #st.image("resources/imgs/plots/director_movies.png", width=500)
-            st.image("resources/imgs/plots/frequent_actors.png", width=500)
+            st.write("The majority of movies have a runtime distributed aound 100 minutes")
+            st.image("resources/imgs/plots/runtime.png", width=650)
+            st.write("Drama holds the most number of movies in the database followed by comedy and action.")
+            st.image("resources/imgs/plots/number_of_movies_by_genre2.png", width=600)
+            st.write("The majority of the movies in this database were released \
+                in the 1900s and only a few movies are released in the 1800s and 2000s.")
+            st.image("resources/imgs/plots/movies_per_era.png", width=650)
+            st.write("These are the most popular themes. The keywords are a reflection of the top 3 genres \
+                    in the database (drama, comedy and action). If you watch movies in these genres it is \
+                    likely that the movie will have these keywords and that is why these movies have high age \
+                    restictions. The keywords also show what themes people enjoy watching")
+            st.image("resources/imgs/plots/wordcloud2.png", width=650)
+            st.image("resources/imgs/plots/director_movies.png", width=650)
+            st.write("These are the 20 most frequent actors in the database. \
+                    Samuel L.Jackson takes the crown with over 80 movies and Steven Busceni coming second \
+                    with around 68 movies. In the 3rd place is Keith David with about 61 movies. \
+                    The remaining 17 actors have almost the same number of movies.")
+            st.image("resources/imgs/plots/frequent_actors.png", width=650)
 
 
     if page_selection == "Pitch":
@@ -145,7 +155,7 @@ def main():
         st.markdown(slides, unsafe_allow_html=True)
 
     if page_selection == "Meet the team":
-        st.title("Meet the team")
+        st.title("Meet the data science team")
         st.markdown(team, unsafe_allow_html=True)
         local_css('resources/pages/html_style.css')
 

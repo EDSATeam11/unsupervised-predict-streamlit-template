@@ -109,7 +109,7 @@ def content_model(movie_list,top_n=12):
 
     # Use a subset of 20000 movies for feature 
     
-    movies_subset= data_preprocessing(60000)
+    movies_subset= data_preprocessing(20000)
 
     feature=movies_subset['content']
 

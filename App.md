@@ -85,8 +85,8 @@ Simply type ```tmux attach-session.```
 
 ## Built With
 
-* [EXPLORE] https://github.com/Explore-AI/unsupervised-predict-streamlit-template - The template we used
-* [Streamlit] https://www.streamlit.io/ - App framework 
+* [EXPLORE](https://github.com/Explore-AI/unsupervised-predict-streamlit-template) - The template we used
+* [Streamlit](https://www.streamlit.io/)- App framework 
 
 ## Contributing
 
@@ -99,11 +99,11 @@ tbc
 ## Authors
 
 * **MONICA FARRELL** - *DevOps engineer* - [monicafar147](https://github.com/monicafar147)
-* **ZINTLE FALTEIN-MAQUBELA** - *App developer* - [monicafar147](https://github.com/monicafar147)
-* **JONATHAN DANKERS** - *Solution engineer* - [monicafar147](https://github.com/monicafar147)
-* **JUANDRE LIEBENBERG** - *Solution engineer* - [monicafar147](https://github.com/monicafar147)
-* **ANDA MCHAKO** - *Data analyst* - [monicafar147](https://github.com/monicafar147)
-* **LUVUYO NKOSANA** - *Data analyst* - [monicafar147](https://github.com/monicafar147)
+* **ZINTLE FALTEIN-MAQUBELA** - *App developer* - [monicafar147](https://github.com/ZintleFaltein)
+* **JONATHAN DANKERS** - *Solution engineer* - [monicafar147](https://github.com/jonnybegreat)
+* **JUANDRE LIEBENBERG** - *Solution engineer* - [monicafar147](https://github.com/JuandreLiebenberg7)
+* **ANDA MCHAKO** - *Data analyst* - [monicafar147](https://https://github.com/andamchako)
+* **LUVUYO NKOSANA** - *Data analyst* - [monicafar147](https://github.com/luvuyonkosana)
 
 ## License
 tbc

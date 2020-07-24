@@ -47,6 +47,12 @@ movies=movies.iloc[0:25257,:]
 # Generate dataframe for recommender
 movies = pd.merge(movies,ratings,on='movieId',how='left')
 movies = pd.merge(movies,imdb,on='movieId',how='left')
+
+# Remove NaN values
+
+movies['rating']=movies['rating'].fillna(0)
+movies['title_cast']=movies['title_cast'].fillna('')
+
 movies['content'] = movies['genres']+'|'+movies['title_cast']
 movies.drop(['userId','timestamp','director','runtime','budget','genres','title_cast','plot_keywords'],axis=1,inplace=True)
 

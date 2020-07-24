@@ -213,7 +213,7 @@ def collab_model(movie_list,top_n):
             else:
                 most_common_favorites[item] = 1
     # Sort the overall most popular items and return the top-N instances
-    sorted_list = sorted(most_common_favorites.items(), key=operator.itemgetter(1), reverse=True)[:top_n]
+    sorted_list = sorted(most_common_favorites.items(), key=operator.itemgetter(1), reverse=True)[:top_n+1]
     top_N = [x[0] for x in sorted_list]
     
     # Return Movie Names

@@ -40,6 +40,10 @@ ratings = pd.read_csv('resources/data/ratings.csv')
 imdb = pd.read_csv('resources/data/imdb_data.csv')
 movies.dropna(inplace=True)
 
+# Select subset of movies
+
+movies=movies.iloc[0:25257,:]
+
 # Generate dataframe for recommender
 movies = pd.merge(movies,ratings,on='movieId',how='left')
 movies = pd.merge(movies,imdb,on='movieId',how='left')
@@ -107,9 +111,9 @@ def content_model(movie_list,top_n=12):
 
     """
 
-    # Use a subset of 20000 movies for feature 
+    # Use a subset of movies for feature 
     
-    movies_subset= data_preprocessing(25256)
+    movies_subset= data_preprocessing(-1)
 
     feature=movies_subset['content']
 

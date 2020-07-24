@@ -71,9 +71,6 @@ def main():
 
         # User-based preferences
         st.write('### Enter Your Three Favorite Movies')
-        #movie_1 = st.selectbox('Fisrt Option',title_list[1493:1520])
-        #movie_2 = st.selectbox('Second Option',title_list[2110:2120])
-        #movie_3 = st.selectbox('Third Option',title_list[2110:2120])
         movie_1 = st.selectbox('Fisrt Option',title_list[14930:15200])
         movie_2 = st.selectbox('Second Option',title_list[25055:25255])
         movie_3 = st.selectbox('Third Option',title_list[21100:21200])
@@ -119,9 +116,11 @@ def main():
         st.title("Data analysis") 
         if st.checkbox("Ratings insights"):
             st.subheader("These plots give insights about the ratings given for the movies")
-            st.write("This is a count of how many movies have been given a certain rating with 5 being \
+            st.write("This is a count of movies that have been given a certain rating with 5 being \
                     the highest rating that a movie can get. Most of the movies have been given a \
-                    rating of 4 which means that the majority of people enjoy most of the movies in the database")
+                    rating of 4 which means that the majority of people enjoy most of the movies in the database \
+                    The poorly rated movies have ratings from 0.5-2.5 and they all have a low number of movies. \
+                    The reason could be that a poorly rated movie is less likely to be watched by a lot of people.")
             #st.image("resources/imgs/plots/number_of_ratings.png", width=650)
             st.image("resources/imgs/plots/ratings_distribution.png", width=650)
             st.write("These are the 20 most rated movies. In the top 10 we only have movies from \
@@ -130,7 +129,7 @@ def main():
         if st.checkbox("Movie insights"):
             st.subheader("A number of factors influence movie choices and below we take a look at \
                         some of those factors such as popular themes, actors, directors and era")
-            st.write("The majority of movies have a runtime distributed aound 100 minutes")
+            st.write("The average movie runtime is 116.1 minutes which equates to ~1.9 hours.")
             st.image("resources/imgs/plots/runtime.png", width=650)
             st.write("Drama holds the most number of movies in the database followed by comedy and action.")
             st.image("resources/imgs/plots/number_of_movies_by_genre2.png", width=600)
@@ -140,13 +139,15 @@ def main():
             st.write("These are the most popular themes. The keywords are a reflection of the top 3 genres \
                     in the database (drama, comedy and action). If you watch movies in these genres it is \
                     likely that the movie will have these keywords and that is why these movies have high age \
-                    restictions. The keywords also show what themes people enjoy watching")
+                    restictions. The keywords also show what themes people enjoy watching.")
             st.image("resources/imgs/plots/wordcloud2.png", width=650)
             st.image("resources/imgs/plots/director_movies.png", width=650)
             st.write("These are the 20 most frequent actors in the database. \
                     Samuel L.Jackson takes the crown with over 80 movies and Steven Busceni coming second \
                     with around 68 movies. In the 3rd place is Keith David with about 61 movies. \
-                    The remaining 17 actors have almost the same number of movies.")
+                    The remaining 17 actors have almost the same number of movies. It is important\
+                    to note that most of the movies in this database are American based and therefore \
+                    the most popular actors are American.")
             st.image("resources/imgs/plots/frequent_actors.png", width=650)
 
 

@@ -71,7 +71,7 @@ def main():
 
         # User-based preferences
         st.write('### Enter Your Three Favorite Movies')
-        movie_1 = st.selectbox('Fisrt Option',title_list[14930:15200])
+        movie_1 = st.selectbox('First Option',title_list[14930:15200])
         movie_2 = st.selectbox('Second Option',title_list[25055:25255])
         movie_3 = st.selectbox('Third Option',title_list[21100:21200])
         fav_movies = [movie_1,movie_2,movie_3]
@@ -121,7 +121,6 @@ def main():
                     rating of 4 which means that the majority of people enjoy most of the movies in the database \
                     The poorly rated movies have ratings from 0.5-2.5 and they all have a low number of movies. \
                     The reason could be that a poorly rated movie is less likely to be watched by a lot of people.")
-            #st.image("resources/imgs/plots/number_of_ratings.png", width=650)
             st.image("resources/imgs/plots/ratings_distribution.png", width=650)
             st.write("These are the 20 most rated movies. In the top 10 we only have movies from \
                     the 90s, with 1994 taking the top 3 spots.")

@@ -57,11 +57,6 @@ The output from the content based model is based on
 The output from the collaborative based model is based on
 - user to user ratings 
 
-### Functions in the app
-
-TBC
-
-
 ## Deployment
 
 The streamlit app can be deployed on an AWS EC2 instance.
@@ -88,29 +83,18 @@ Simply type ```tmux attach-session.```
 * [EXPLORE](https://github.com/Explore-AI/unsupervised-predict-streamlit-template) - The template we used
 * [Streamlit](https://www.streamlit.io/)- App framework 
 
-## Contributing
-
-tbc
-
-## Versioning
-
-tbc
-
 ## Authors
 
 * **MONICA FARRELL** - *DevOps engineer* - [monicafar147](https://github.com/monicafar147)
-* **ZINTLE FALTEIN-MAQUBELA** - *App developer* - [monicafar147](https://github.com/ZintleFaltein)
-* **JONATHAN DANKERS** - *Solution engineer* - [monicafar147](https://github.com/jonnybegreat)
-* **JUANDRE LIEBENBERG** - *Solution engineer* - [monicafar147](https://github.com/JuandreLiebenberg7)
-* **ANDA MCHAKO** - *Data analyst* - [monicafar147](https://https://github.com/andamchako)
-* **LUVUYO NKOSANA** - *Data analyst* - [monicafar147](https://github.com/luvuyonkosana)
-
-## License
-tbc
+* **ZINTLE FALTEIN-MAQUBELA** - *App developer* - [ZintleFaltein](https://github.com/ZintleFaltein)
+* **JONATHAN DANKERS** - *Solution engineer* - [jonnybegreat](https://github.com/jonnybegreat)
+* **JUANDRE LIEBENBERG** - *Solution engineer* - [JuandreLiebenberg](https://github.com/JuandreLiebenberg7)
+* **ANDA MCHAKO** - *Data analyst* - [andamchako](https://https://github.com/andamchako)
+* **LUVUYO NKOSANA** - *Data analyst* - [luvuyonkosana](https://github.com/luvuyonkosana)
 
 ## Acknowledgments
 
 * Xolisa Mzini (supervisor)
-* x
-* y
-
+* Towards data science blog posts
+* Medium blog posts
+* Explore Data Science Academy

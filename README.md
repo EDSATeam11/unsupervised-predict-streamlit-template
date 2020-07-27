@@ -1,8 +1,6 @@
 # Streamlit-based Recommender System
 #### EXPLORE Data Science Academy Unsupervised Predict
 
-## 1) Overview
-
 ![Movie_Recommendations](resources/imgs/Image_header.png)
 
 # Movie recommender system

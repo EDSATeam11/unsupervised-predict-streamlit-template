@@ -45,7 +45,8 @@ title_list = load_movie_titles('resources/data/movies.csv')
 # Load pages
 team = read_markdown_file("resources/pages/meet_the_team.html") 
 slides = read_markdown_file("resources/pages/slides.html") 
-solution = read_markdown_file("resources/pages/solution_overview.html")  
+collab_based = read_markdown_file("resources/pages/collab_model.html")  
+content_based = read_markdown_file("resources/pages/content_model.html")
 
 # App declaration
 def main():
@@ -110,7 +111,10 @@ def main():
     # ------------- SAFE FOR ALTERING/EXTENSION -------------------
     if page_selection == "Solution Overview":
         st.title("Solution Overview")
-        st.markdown(solution, unsafe_allow_html=True)
+        st.markdown(content_based, unsafe_allow_html=True)
+        st.image("resources/imgs/plots/content_model.jpg")
+        st.markdown(collab_based, unsafe_allow_html=True)
+        st.image("resources/imgs/plots/collab_model.jpg")
 
     if page_selection == "Data analysis and plots":
         st.title("Data analysis") 

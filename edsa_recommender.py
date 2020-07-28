@@ -110,23 +110,23 @@ def main():
     if page_selection == "Solution Overview":
         st.title("Solution Overview")
         st.write("For the recommendations made in this app we used two approaches: \
-            user similarity (collaborative based filtering) and movie similarity (content based filtering).\
-            The following is an overview of how they work.")
+                user similarity (collaborative based filtering) and movie similarity (content based filtering).\
+                The following is an overview of how they work.")
         st.title("Content based")
         st.write("Here we made recommendations based on how similar the properties\
-             or features of a movie are to other movies. We used movies with similar\
-            themes (in the same genre) or have similar actors to predict what \
-            the user will like. If you make your movie selection based on \
-            actors you love the recommendations will reflect that, and \
-            if you select movies based on a genre you prefer on a \
-            specific day the recommendations will reflect that.\
-            This algorithm takes a lot more into consideration than just ratings from other users. ")
+                or features of a movie are to other movies. We used movies with similar\
+                themes (in the same genre) or have similar actors to predict what \
+                the user will like. If you make your movie selection based on \
+                actors you love the recommendations will reflect that, and \
+                if you select movies based on a genre you prefer on a \
+                specific day the recommendations will reflect that.\
+                This algorithm takes a lot more into consideration than just ratings from other users. ")
         st.image("resources/imgs/plots/content_model.jpg", width=450)
         st.title("Collaborative based")
         st.write("This algorithm is based on past interactions between users and the\
-             movies in the database. We make recommendations based on movies that those users rated.\
-             This method takes into account movies that users with similar tastes liked and makes a \
-            recommendation on that basis and no additional information.")
+                movies in the database. We make recommendations based on movies that those users rated.\
+                This method takes into account movies that users with similar tastes liked and makes a \
+                recommendation on that basis and no additional information.")
         st.image("resources/imgs/plots/collab_model.jpg", width=650)
 
     if page_selection == "Data analysis and plots":
@@ -144,13 +144,13 @@ def main():
             st.image("resources/imgs/plots/highest_rated_movies.png", width=650)
         if st.checkbox("Movie insights"):
             st.subheader("A number of factors influence movie choices and below we take a look at \
-                        some of those factors such as popular themes, actors, directors and era")
+                    some of those factors such as popular themes, actors, directors and era")
             st.write("The average movie runtime is 116.1 minutes which equates to ~1.9 hours.")
             st.image("resources/imgs/plots/runtime.png", width=650)
             st.write("Drama holds the most number of movies in the database followed by comedy and action.")
             st.image("resources/imgs/plots/number_of_movies_by_genre2.png", width=600)
-            st.write("The majority of the movies in this database were released \
-                in the 1900s and only a few movies are released in the 1800s and 2000s.")
+            st.write("The graph below shows the distribution on movies in the dataset. At first glance, \
+                it is clear that the 2010s have the highest number of movies released in one decade.")
             st.image("resources/imgs/plots/movies_per_era.png", width=650)
             st.write("These are the most popular themes. The keywords are a reflection of the top 3 genres \
                     in the database (drama, comedy and action). If you watch movies in these genres it is \
@@ -158,10 +158,11 @@ def main():
                     restictions. The keywords also show what themes people enjoy watching.")
             st.image("resources/imgs/plots/wordcloud2.png", width=650)
             st.image("resources/imgs/plots/director_movies.png", width=650)
-            st.write("These are the 20 most frequent actors in the database. \
-                    Samuel L.Jackson takes the crown with over 80 movies and Steven Busceni coming second \
-                    with around 68 movies. In the 3rd place is Keith David with about 61 movies. \
-                    The remaining 17 actors have almost the same number of movies. It is important\
+            st.write("The graph above shows the number of times movies with specific actors in the dataset \
+                    have been rated. Tom Hanks takes the lead with more than 195000 movie ratings to his name.\
+                    In second place is Samuel L.Jackson followed by Morgan Freeman in third place. It makes sense \
+                    that the top 3 actors with the most ratings associated with their names also star in the top \
+                    3 most rated movies (refer to 'most rated movies' section). It is important\
                     to note that most of the movies in this database are American based and therefore \
                     the most popular actors are American.")
             st.image("resources/imgs/plots/frequent_actors.png", width=650)

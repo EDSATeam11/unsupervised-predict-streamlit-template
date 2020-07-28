@@ -32,12 +32,31 @@ import os
 import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 # Importing data
 movies = pd.read_csv('resources/data/movies.csv', sep = ',',delimiter=',')
 ratings = pd.read_csv('resources/data/ratings.csv')
+imdb = pd.read_csv('resources/data/imdb_data.csv')
 movies.dropna(inplace=True)
+
+# Select subset of movies
+
+movies=movies.iloc[0:25257,:]
+
+# Generate dataframe for recommender
+movies = pd.merge(movies,ratings,on='movieId',how='left')
+movies = pd.merge(movies,imdb,on='movieId',how='left')
+
+# Remove NaN values
+
+movies['rating']=movies['rating'].fillna(0)
+movies['title_cast']=movies['title_cast'].fillna('')
+movies['genres']=movies['genres'].fillna('')
+
+movies['content'] = movies['genres']+'|'+movies['title_cast']
+movies.drop(['userId','timestamp','director','runtime','budget','genres','title_cast','plot_keywords'],axis=1,inplace=True)
+
 
 def data_preprocessing(subset_size):
     """Prepare data for use within Content filtering algorithm.
@@ -54,14 +73,34 @@ def data_preprocessing(subset_size):
 
     """
     # Split genre data into individual words.
-    movies['keyWords'] = movies['genres'].str.replace('|', ' ')
+    
+    movies['content'] = movies['content'].str.replace('|', ' ')
+    
     # Subset of the data
-    movies_subset = movies[:subset_size]
+    # Group data by title to get unique movie titles
+
+    genres = pd.DataFrame(movies.groupby(['title'])['content'].unique())
+    rating=pd.DataFrame(movies.groupby(['title'])['rating'].count())
+    movies_subset=pd.merge(genres,rating,on='title').sort_values('rating',ascending=False)
+
+    # Function to convert genres column from list to strings
+
+    def string(input):
+      string=''
+      for i in input:
+        string=string+str (i)
+      return string
+
+    movies_subset['content']=movies_subset['content'].apply(string) # apply string function
+
+    
+    movies_subset = movies_subset[:subset_size] # return subset of dataframe
+    
     return movies_subset
 
 # !! DO NOT CHANGE THIS FUNCTION SIGNATURE !!
 # You are, however, encouraged to change its content.  
-def content_model(movie_list,top_n=10):
+def content_model(movie_list,top_n=12):
     """Performs Content filtering based upon a list of movies supplied
        by the app user.
 
@@ -78,35 +117,52 @@ def content_model(movie_list,top_n=10):
         Titles of the top-n movie recommendations to the user.
 
     """
-    # Initializing the empty list of recommended movies
-    recommended_movies = []
-    data = data_preprocessing(27000)
-    # Instantiating and generating the count matrix
-    count_vec = CountVectorizer()
-    count_matrix = count_vec.fit_transform(data['keyWords'])
-    indices = pd.Series(data['title'])
-    cosine_sim = cosine_similarity(count_matrix, count_matrix)
-    # Getting the index of the movie that matches the title
-    idx_1 = indices[indices == movie_list[0]].index[0]
-    idx_2 = indices[indices == movie_list[1]].index[0]
-    idx_3 = indices[indices == movie_list[2]].index[0]
-    # Creating a Series with the similarity scores in descending order
-    rank_1 = cosine_sim[idx_1]
-    rank_2 = cosine_sim[idx_2]
-    rank_3 = cosine_sim[idx_3]
-    # Calculating the scores
-    score_series_1 = pd.Series(rank_1).sort_values(ascending = False)
-    score_series_2 = pd.Series(rank_2).sort_values(ascending = False)
-    score_series_3 = pd.Series(rank_3).sort_values(ascending = False)
-    # Getting the indexes of the 10 most similar movies
-    listings = score_series_1.append(score_series_1).append(score_series_3).sort_values(ascending = False)
 
-    # Store movie names
-    recommended_movies = []
-    # Appending the names of movies
-    top_50_indexes = list(listings.iloc[1:50].index)
-    # Removing chosen movies
-    top_indexes = np.setdiff1d(top_50_indexes,[idx_1,idx_2,idx_3])
-    for i in top_indexes[:top_n]:
-        recommended_movies.append(list(movies['title'])[i])
+    # Use a subset of movies for feature 
+    
+    movies_subset= data_preprocessing(-1)
+
+    feature=movies_subset['content']
+
+    # Set up vectorizer
+
+    vec=TfidfVectorizer(stop_words='english') # term frequency inverse document frequency
+
+    feature_vec=vec.fit_transform(feature) # fit transform vec into sparse matrix
+
+    # Use cosine similarity to get similarity matrix
+    
+    sim_matrix =cosine_similarity(feature_vec,feature_vec)
+
+
+    movies_subset=movies_subset.reset_index() # reset index
+
+    index_map = pd.Series(movies_subset.index,index = movies_subset['title']) # contains a series of the movie titles
+
+    # use for loop for to iterate through movie list
+
+    recommendations_indx=[]
+
+    for i in movie_list:
+      
+      index = index_map[i] # returns the index of the argument title in index_map
+      
+      similarity = list(enumerate(sim_matrix[index])) # returns a list of with index and similarity
+      
+      similarity = sorted(similarity, key=lambda x: x[1], reverse=True) # sorts list in descending order
+      
+      similarity = similarity[1:top_n] # top 10 recommendations
+      
+      #return movie names using the mapping series
+       
+      movie_indices = [i[0] for i in similarity] # obtain indices for recommended movies
+       
+      recommendations_indx.append(movie_indices)
+
+    #return movie names using the mapping series
+
+    movie_indices = recommendations_indx[0][0:3]+recommendations_indx[1][0:3]+recommendations_indx[2][0:4] # obtain indices for recommended movies
+
+    recommended_movies=list(movies_subset['title'].iloc[movie_indices]) # filter movie_df for titles
+    
     return recommended_movies

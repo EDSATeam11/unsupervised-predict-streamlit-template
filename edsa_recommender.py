@@ -31,8 +31,10 @@ import streamlit as st
 # Data handling dependencies
 import pandas as pd
 import numpy as np
+from pathlib import Path
 
 # Custom Libraries
+from app_functions import *
 from utils.data_loader import load_movie_titles
 from recommenders.collaborative_based import collab_model
 from recommenders.content_based import content_model
@@ -40,12 +42,17 @@ from recommenders.content_based import content_model
 # Data Loading
 title_list = load_movie_titles('resources/data/movies.csv')
 
+# Load pages
+team = read_markdown_file("resources/pages/meet_the_team.html") 
+slides = read_markdown_file("resources/pages/slides.html") 
+solution = read_markdown_file("resources/pages/solution_overview.html")  
+
 # App declaration
 def main():
 
     # DO NOT REMOVE the 'Recommender System' option below, however,
     # you are welcome to add more options to enrich your app.
-    page_options = ["Recommender System","Solution Overview", "Data analysis and plots"
+    page_options = ["Recommender System","Solution Overview", "Data analysis and plots",
                     "Meet the team", "Pitch"]
 
     # -------------------------------------------------------------------
@@ -64,7 +71,7 @@ def main():
 
         # User-based preferences
         st.write('### Enter Your Three Favorite Movies')
-        movie_1 = st.selectbox('Fisrt Option',title_list[14930:15200])
+        movie_1 = st.selectbox('First Option',title_list[14930:15200])
         movie_2 = st.selectbox('Second Option',title_list[25055:25255])
         movie_3 = st.selectbox('Third Option',title_list[21100:21200])
         fav_movies = [movie_1,movie_2,movie_3]
@@ -103,19 +110,57 @@ def main():
     # ------------- SAFE FOR ALTERING/EXTENSION -------------------
     if page_selection == "Solution Overview":
         st.title("Solution Overview")
-        st.write("This is an overview of the models used to recommend movies")
+        st.markdown(solution, unsafe_allow_html=True)
 
     if page_selection == "Data analysis and plots":
         st.title("Data analysis") 
-        st.write("A look at the data analysis")
+        if st.checkbox("Ratings insights"):
+            st.subheader("These plots give insights about the ratings given for the movies")
+            st.write("This is a count of movies that have been given a certain rating with 5 being \
+                    the highest rating that a movie can get. Most of the movies have been given a \
+                    rating of 4 which means that the majority of people enjoy most of the movies in the database \
+                    The poorly rated movies have ratings from 0.5-2.5 and they all have a low number of movies. \
+                    The reason could be that a poorly rated movie is less likely to be watched by a lot of people.")
+            st.image("resources/imgs/plots/ratings_distribution.png", width=650)
+            st.write("These are the 20 most rated movies. In the top 10 we only have movies from \
+                    the 90s, with 1994 taking the top 3 spots.")
+            st.image("resources/imgs/plots/highest_rated_movies.png", width=650)
+        if st.checkbox("Movie insights"):
+            st.subheader("A number of factors influence movie choices and below we take a look at \
+                        some of those factors such as popular themes, actors, directors and era")
+            st.write("The average movie runtime is 116.1 minutes which equates to ~1.9 hours.")
+            st.image("resources/imgs/plots/runtime.png", width=650)
+            st.write("Drama holds the most number of movies in the database followed by comedy and action.")
+            st.image("resources/imgs/plots/number_of_movies_by_genre2.png", width=600)
+            st.write("The majority of the movies in this database were released \
+                in the 1900s and only a few movies are released in the 1800s and 2000s.")
+            st.image("resources/imgs/plots/movies_per_era.png", width=650)
+            st.write("These are the most popular themes. The keywords are a reflection of the top 3 genres \
+                    in the database (drama, comedy and action). If you watch movies in these genres it is \
+                    likely that the movie will have these keywords and that is why these movies have high age \
+                    restictions. The keywords also show what themes people enjoy watching.")
+            st.image("resources/imgs/plots/wordcloud2.png", width=650)
+            st.image("resources/imgs/plots/director_movies.png", width=650)
+            st.write("These are the 20 most frequent actors in the database. \
+                    Samuel L.Jackson takes the crown with over 80 movies and Steven Busceni coming second \
+                    with around 68 movies. In the 3rd place is Keith David with about 61 movies. \
+                    The remaining 17 actors have almost the same number of movies. It is important\
+                    to note that most of the movies in this database are American based and therefore \
+                    the most popular actors are American.")
+            st.image("resources/imgs/plots/frequent_actors.png", width=650)
+
+
+    if page_selection == "Pitch":
+        st.title("Pitch slide deck")
+        st.markdown(slides, unsafe_allow_html=True)
 
     if page_selection == "Meet the team":
-        st.title("Meet the team")
+        st.title("Meet the data science team")
+        st.markdown(team, unsafe_allow_html=True)
+        local_css('resources/pages/html_style.css')
 
     # You may want to add more sections here for aspects such as an EDA,
     # or to provide your business pitch.
-
-
 
 if __name__ == '__main__':
     main()

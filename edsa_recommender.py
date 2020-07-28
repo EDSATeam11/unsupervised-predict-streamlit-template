@@ -112,9 +112,9 @@ def main():
     if page_selection == "Solution Overview":
         st.title("Solution Overview")
         st.markdown(content_based, unsafe_allow_html=True)
-        st.image("resources/imgs/plots/content_model.jpg")
+        st.image("resources/imgs/plots/content_model.jpg", width=450)
         st.markdown(collab_based, unsafe_allow_html=True)
-        st.image("resources/imgs/plots/collab_model.jpg")
+        st.image("resources/imgs/plots/collab_model.jpg", width=450)
 
     if page_selection == "Data analysis and plots":
         st.title("Data analysis") 

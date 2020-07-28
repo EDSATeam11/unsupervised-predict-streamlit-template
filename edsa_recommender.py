@@ -45,8 +45,7 @@ title_list = load_movie_titles('resources/data/movies.csv')
 # Load pages
 team = read_markdown_file("resources/pages/meet_the_team.html") 
 slides = read_markdown_file("resources/pages/slides.html") 
-collab_based = read_markdown_file("resources/pages/collab_model.html")  
-content_based = read_markdown_file("resources/pages/content_model.html")
+overview = read_markdown_file("resources/pages/overview.html")  
 
 # App declaration
 def main():
@@ -111,9 +110,22 @@ def main():
     # ------------- SAFE FOR ALTERING/EXTENSION -------------------
     if page_selection == "Solution Overview":
         st.title("Solution Overview")
-        st.markdown(content_based, unsafe_allow_html=True)
+        st.markdown(overview, unsafe_allow_html=True)
+        st.title("Content based")
+        st.write("Here we made recommendations based on how similar the properties\
+             or features of a movie are to other movies. We used movies with similar\
+            themes (in the same genre) or have similar actors to predict what \
+            the user will like. If you make your movie selection based on \
+            actors you love the recommendations will reflect that, and \
+            if you select movies based on a genre you prefer on a \
+            specific day the recommendations will reflect that.\
+            This algorithm takes a lot more into consideration than just ratings from other users. ")
         st.image("resources/imgs/plots/content_model.jpg", width=450)
-        st.markdown(collab_based, unsafe_allow_html=True)
+        st.title("Collaborative based")
+        st.write("This algorithm is based on past interactions between users and the\
+             movies in the database. We make recommendations based on movies that those users rated.\
+             This method takes into account movies that users with similar tastes liked and makes a \
+            recommendation on that basis and no additional information.")
         st.image("resources/imgs/plots/collab_model.jpg")
 
     if page_selection == "Data analysis and plots":

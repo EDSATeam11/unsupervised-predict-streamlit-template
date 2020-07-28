@@ -127,7 +127,7 @@ def main():
              movies in the database. We make recommendations based on movies that those users rated.\
              This method takes into account movies that users with similar tastes liked and makes a \
             recommendation on that basis and no additional information.")
-        st.image("resources/imgs/plots/collab_model.jpg")
+        st.image("resources/imgs/plots/collab_model.jpg", width=450)
 
     if page_selection == "Data analysis and plots":
         st.title("Data analysis") 

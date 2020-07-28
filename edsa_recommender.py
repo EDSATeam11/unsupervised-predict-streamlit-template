@@ -45,7 +45,6 @@ title_list = load_movie_titles('resources/data/movies.csv')
 # Load pages
 team = read_markdown_file("resources/pages/meet_the_team.html") 
 slides = read_markdown_file("resources/pages/slides.html") 
-overview = read_markdown_file("resources/pages/overview.html")  
 
 # App declaration
 def main():
@@ -110,7 +109,9 @@ def main():
     # ------------- SAFE FOR ALTERING/EXTENSION -------------------
     if page_selection == "Solution Overview":
         st.title("Solution Overview")
-        st.markdown(overview, unsafe_allow_html=True)
+        st.write("For the recommendations made in this app we used two approaches: \
+            user similarity (collaborative based filtering) and movie similarity (content based filtering).\
+            The following is an overview of how they work.")
         st.title("Content based")
         st.write("Here we made recommendations based on how similar the properties\
              or features of a movie are to other movies. We used movies with similar\
